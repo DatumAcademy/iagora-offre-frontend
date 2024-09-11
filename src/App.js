@@ -11,10 +11,10 @@ export default function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("generateTokken");
-    if (!token) {
-      navigate("/pages/authentication/sign-in");
-    }
+    // const token = localStorage.getItem("generateTokken");
+    // if (!token) {
+    //   navigate("/pages/authentication/sign-in");
+    // }
   }, [pathname, navigate]);
 
   useEffect(() => {

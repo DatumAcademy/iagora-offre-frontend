@@ -1,139 +1,121 @@
-/*
-=========================================================
-* Material Kit 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// @mui material components
+import { useEffect, useState } from "react";
+import axios from "axios";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import Icon from "@mui/material/Icon";
-import Stack from "@mui/material/Stack";
-
-// Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
+import { API_URL } from "constants/coonstant.";
 
-function FeaturesOne() {
+function StudentCV() {
+  const [student, setStudent] = useState(null);
+  const numETU = localStorage.getItem("numETU");
+  const email = localStorage.getItem("email");
+
+  useEffect(() => {
+    const fetchStudentDetails = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/student/${numETU}/${email}`);
+        if (response.status === 200 && response.data.success) {
+          setStudent(response.data.student);
+        }
+      } catch (error) {
+        console.error("Erreur lors de la récupération des détails de l'étudiant", error);
+      }
+    };
+
+    fetchStudentDetails();
+  }, [numETU, email]);
+
   return (
-    <MKBox component="section" py={{ xs: 3, md: 12 }}>
+    <MKBox component="section" py={{ xs: 3, md: 2 }}>
       <Container>
-        <Grid container alignItems="center">
-          <Grid item xs={12} lg={5}>
-            <MKTypography variant="h3" my={1}>
-              Read More About Us
-            </MKTypography>
-            <MKTypography variant="body2" color="text" mb={2}>
-              Pain is what we go through as we become older. We get insulted by others, lose trust
-              for those others. We get back stabbed by friends. It becomes harder for us to give
-              others a hand.
-            </MKTypography>
-            <MKTypography
-              component="a"
-              href="#"
-              variant="body2"
-              color="info"
-              fontWeight="regular"
-              sx={{
-                width: "max-content",
-                display: "flex",
-                alignItems: "center",
-
-                "& .material-icons-round": {
-                  fontSize: "1.125rem",
-                  transform: "translateX(3px)",
-                  transition: "transform 0.2s cubic-bezier(0.34, 1.61, 0.7, 1.3)",
-                },
-
-                "&:hover .material-icons-round, &:focus .material-icons-round": {
-                  transform: "translateX(6px)",
-                },
-              }}
-            >
-              More about us
-              <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
-            </MKTypography>
-          </Grid>
-          <Grid item xs={12} lg={6} sx={{ ml: { xs: -2, lg: "auto" }, mt: { xs: 6, lg: 0 } }}>
-            <Stack>
-              <MKBox display="flex" alignItems="center" p={2}>
-                <MKBox
-                  width="3rem"
-                  height="3rem"
-                  variant="gradient"
-                  bgColor="info"
-                  color="white"
-                  coloredShadow="info"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  borderRadius="xl"
-                >
-                  <Icon fontSize="small">mediation</Icon>
-                </MKBox>
-                <MKTypography variant="body2" color="text" pl={2}>
-                  It becomes harder for us to give others a hand.
-                  <br />
-                  We get our heart broken by people we love.
+        {student ? (
+          <>
+            <Grid container justifyContent="center">
+              <Grid item xs={12}>
+                <MKTypography variant="h3" textAlign="center" mb={4}>
+                  <p style={{color:'#242975'}}>Nom et Prénom : {student.first_name} {student.last_name}</p>
                 </MKTypography>
-              </MKBox>
-              <MKBox display="flex" alignItems="center" p={2}>
-                <MKBox
-                  width="3rem"
-                  height="3rem"
-                  variant="gradient"
-                  bgColor="info"
-                  color="white"
-                  coloredShadow="info"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  borderRadius="xl"
-                >
-                  <Icon fontSize="small">settings_overscan</Icon>
-                </MKBox>
-                <MKTypography variant="body2" color="text" pl={2}>
-                  As we live, our hearts turn colder.
-                  <br />
-                  Cause pain is what we go through as we become older.
+              </Grid>
+            </Grid>
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={6}>
+                <MKTypography variant="h5" mt={4} mb={2}>
+                  <p style={{color:'#242975'}}>Informations générales</p>
                 </MKTypography>
-              </MKBox>
-              <MKBox display="flex" alignItems="center" p={2}>
-                <MKBox
-                  width="3rem"
-                  height="3rem"
-                  variant="gradient"
-                  bgColor="info"
-                  color="white"
-                  coloredShadow="info"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  borderRadius="xl"
-                >
-                  <Icon fontSize="small">token</Icon>
-                </MKBox>
-                <MKTypography variant="body2" color="text" pl={2}>
-                  When we lose family over time.
-                  <br />
-                  What else could rust the heart more over time? Blackgold.
+                <hr></hr>
+                <br></br>
+                <MKTypography variant="body1" mb={2}>
+                  <strong>Email :</strong> {student.email}
                 </MKTypography>
-              </MKBox>
-            </Stack>
-          </Grid>
-        </Grid>
+                <MKTypography variant="body1" mb={2}>
+                  <strong>Age :</strong> {student.age} ans
+                </MKTypography>
+                <MKTypography variant="body1" mb={2}>
+                  <strong>Genre :</strong> {student.gender}
+                </MKTypography>
+                <hr></hr>
+                <MKTypography variant="h5" mt={4} mb={2}>
+                  Diplômes
+                </MKTypography>
+                {student.diploma?.map((diploma, index) => (
+                  <MKTypography key={index} variant="body2" mb={1}>
+                    {diploma.label}
+                  </MKTypography>
+                ))}
+                <hr></hr>
+                <MKTypography variant="h5" mt={4} mb={2}>
+                  Langues
+                </MKTypography>
+                {student.language?.map((lang, index) => (
+                  <MKTypography key={index} variant="body2" mb={1}>
+                    {lang.label} - Niveau : {lang.level}
+                  </MKTypography>
+                ))}
+                 <hr></hr>
+                 <br></br>
+                <MKTypography variant="h5" mb={2}>
+                  Compétences
+                </MKTypography>
+                {student.skills?.map((skill, index) => (
+                  <MKTypography key={index} variant="body2" mb={1}>
+                    {skill}
+                  </MKTypography>
+                ))}
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <MKTypography variant="h5" mt={4} mb={2}>
+                  <p style={{color:'#242975'}}>Experiences Professionnelles</p>
+                </MKTypography>
+                <hr></hr>
+                <MKTypography variant="h5" mt={4} mb={2}>
+                  Expériences
+                </MKTypography>
+                {student.experience?.map((exp, index) => (
+                  <MKBox key={index} mb={3}>
+                    <MKTypography variant="body2">
+                      <strong>{index+1} - {exp.label}</strong> ({exp.years})
+                    </MKTypography>
+                    <MKTypography variant="body2" mb={1}>
+                      <strong>Entreprise :</strong> {exp.company}, {exp.city}
+                    </MKTypography>
+                    <MKTypography variant="body2" mb={1}>
+                      <strong>Description :</strong> {exp.description}
+                    </MKTypography>
+                    <MKTypography variant="body2">
+                      <strong>Compétences :</strong> {exp.skills.join(", ")}
+                    </MKTypography>
+                  </MKBox>
+                ))}
+              </Grid>
+            </Grid>
+          </>
+        ) : (
+          <MKTypography variant="h6">Chargement des détails de letudiant...</MKTypography>
+        )}
       </Container>
     </MKBox>
   );
 }
 
-export default FeaturesOne;
+export default StudentCV;

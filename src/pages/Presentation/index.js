@@ -99,7 +99,8 @@ function Presentation() {
                 },
               })}
             >
-              Liste des Offres
+              <p>IAGORA</p>
+              <p>Offre Emplois / Stage</p>
             </MKTypography>
           </Grid>
         </Container>

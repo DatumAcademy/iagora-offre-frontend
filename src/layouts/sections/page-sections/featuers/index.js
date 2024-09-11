@@ -26,13 +26,13 @@ import featuresOneCode from "layouts/sections/page-sections/featuers/components/
 function Features() {
   return (
     <BaseLayout
-      title="Features"
+      title=""
       breadcrumb={[
-        { label: "Page Sections", route: "/sections/page-sections/features" },
-        { label: "Features" },
+        { label: "Profil", route: "/sections/page-sections/features" },
+        { label: "Information" },
       ]}
     >
-      <View title="Features 1" code={featuresOneCode}>
+      <View title="INFORMATION DE L'ETUDIANT" code={featuresOneCode}>
         <FeaturesOne />
       </View>
     </BaseLayout>
