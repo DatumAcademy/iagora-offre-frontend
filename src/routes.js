@@ -67,6 +67,7 @@ import Dropdowns from "layouts/sections/elements/dropdowns";
 import ProgressBars from "layouts/sections/elements/progress-bars";
 import Toggles from "layouts/sections/elements/toggles";
 import Typography from "layouts/sections/elements/typography";
+import SignUpBasic from "pages/LandingPages/Register";
 
 const routes = [
   {
@@ -104,6 +105,16 @@ const routes = [
             component: <SignIn />,
           },
         ],
+      },
+      {
+        name: "Sign Up",
+        collapse:[
+          {
+            name: "sign up",
+            route: "/pages/authentication/signup",
+            component: <SignUpBasic />
+          }
+        ]
       },
     ],
   },

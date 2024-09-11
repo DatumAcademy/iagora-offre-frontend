@@ -11,33 +11,30 @@ import bgImage from "assets/images/fonds.png";
 import { Link } from "react-router-dom";
 import { API_URL } from "constants/coonstant.";
 
-function SignInBasic() {
+function SignUpBasic() {
   const [numETU, setNumETU] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     setErrorMessage("");
     setIsLoading(true);
 
     try {
-      const response = await axios.post(`${API_URL}/student/login`, {
+      const response = await axios.post(`${API_URL}/student/authentication-v1`, {
         numETU,
         email,
-        password,
       });
 
       const data = response.data;
 
-      if (response.status === 200 && data.success) {
-        localStorage.setItem("generateTokken", data.token);
-        navigate("/dashboard");
+      if (response.status === 200 && data.status) {
+        navigate("/pages/authentication/sign-in");
       } else {
-        setErrorMessage(data.message || "Échec de la connexion. Veuillez réessayer.");
+        setErrorMessage(data.message || "Échec de l'inscription. Veuillez réessayer.");
       }
     } catch (error) {
       setErrorMessage("Une erreur s'est produite. Veuillez réessayer plus tard.");
@@ -82,11 +79,11 @@ function SignInBasic() {
                 textAlign="center"
               >
                 <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-                  LOGIN
+                  INSCRIPTION
                 </MKTypography>
               </MKBox>
               <MKBox pt={4} pb={3} px={3}>
-                <MKBox component="form" role="form" onSubmit={handleLogin}>
+                <MKBox component="form" role="form" onSubmit={handleSignUp}>
                   <MKBox mb={2}>
                     <MKInput
                       type="text"
@@ -105,15 +102,6 @@ function SignInBasic() {
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </MKBox>
-                  <MKBox mb={2}>
-                    <MKInput
-                      type="password"
-                      label="Mot de passe"
-                      fullWidth
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                  </MKBox>
                   {errorMessage && (
                     <MKBox mb={2}>
                       <MKTypography color="error">{errorMessage}</MKTypography>
@@ -127,21 +115,21 @@ function SignInBasic() {
                       type="submit"
                       disabled={isLoading}
                     >
-                      {isLoading ? "Connexion..." : "Se connecter"}
+                      {isLoading ? "Création du compte..." : "S'inscrire"}
                     </MKButton>
                   </MKBox>
                   <MKBox mt={3} mb={1} textAlign="center">
                     <MKTypography variant="button" color="text">
-                      Pas encore de compte?{" "}
+                      Déjà inscrit?{" "}
                       <MKTypography
                         component={Link}
-                        to="/pages/authentication/signup"
+                        to="/pages/authentication/sign-in"
                         variant="button"
                         color="info"
                         fontWeight="medium"
                         textGradient
                       >
-                        Créer un compte
+                        Se connecter
                       </MKTypography>
                     </MKTypography>
                   </MKBox>
@@ -155,4 +143,4 @@ function SignInBasic() {
   );
 }
 
-export default SignInBasic;
+export default SignUpBasic;
