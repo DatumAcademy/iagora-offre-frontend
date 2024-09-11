@@ -29,13 +29,13 @@ import tabsSimpleCode from "layouts/sections/navigation/nav-tabs/components/Tabs
 function NavTabs() {
   return (
     <BaseLayout
-      title="Nav Tabs"
+      title=""
       breadcrumb={[
-        { label: "Page Sections", route: "/sections/navigation/nav-tabs" },
-        { label: "Nav Tabs" },
+        { label: "Offres", route: "/offres/candidaturess" },
+        { label: "Candidatures" },
       ]}
     >
-      <View title="Tabs simple" code={tabsSimpleCode}>
+      <View title="MES CANDIDATURES" code={tabsSimpleCode}>
         <MKBox bgColor="white" py={6}>
           <TabsSimple />
         </MKBox>

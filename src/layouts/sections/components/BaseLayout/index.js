@@ -26,7 +26,6 @@ import MKTypography from "components/MKTypography";
 
 // Material Kit 2 React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import CenteredFooter from "examples/Footers/CenteredFooter";
 import Breadcrumbs from "examples/Breadcrumbs";
 
 // Routes
@@ -54,7 +53,7 @@ function BaseLayout({ breadcrumb, title, children }) {
         </Grid>
       </Container>
       <MKBox mt="auto">
-        <CenteredFooter />
+        
       </MKBox>
     </MKBox>
   );

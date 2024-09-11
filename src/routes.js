@@ -35,7 +35,8 @@ const routes = [
       {
         name: "Liste de mes candidatures",
         description: "Consultez toutes vos candidatures déposées pour des stages ou emplois en un seul endroit.",
-        route: "/offres/candidatures"
+        route: "/offres/candidatures",
+        component: <NavTabs />,
       },
       {
         name: "Modification de mes compétences",
