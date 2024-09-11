@@ -8,6 +8,7 @@ import SignIn from "layouts/pages/authentication/sign-in";
 import SignUpBasic from "pages/LandingPages/Register";
 import CompleteRegistration from "pages/LandingPages/SignIn/SignInSkills";
 import PresentationPage from "layouts/pages/presentation";
+import Pagination from "layouts/sections/navigation/pagination";
 
 const routes = [
   {
@@ -66,6 +67,16 @@ const routes = [
             component: <SignIn />,
           },
         ],
+      },
+      {
+        name: "Detail offre",
+        collapse: [
+          {
+            name: "Detail offre",
+            route: "/offre/:id",
+            component: <Pagination />,
+          },
+        ]
       },
       {
         name: "Sign Up",

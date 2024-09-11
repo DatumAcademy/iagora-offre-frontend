@@ -5,7 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import theme from "assets/theme";
 import Presentation from "layouts/pages/presentation";
 import routes from "routes";
-
+import Chatbot from "pages/CopiloteChatBot";
 export default function App() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -38,6 +38,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <Chatbot />
       <Routes>
         {getRoutes(routes)}
         <Route path="/presentation" element={<Presentation />} />
