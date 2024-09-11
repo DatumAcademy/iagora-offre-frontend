@@ -40,7 +40,7 @@ function SignInBasic() {
         setErrorMessage(data.message || "Échec de la connexion. Veuillez réessayer.");
       }
     } catch (error) {
-      setErrorMessage("Une erreur s'est produite. Veuillez réessayer plus tard.");
+      setErrorMessage("Nous n'avons pas trouvé de compte avec vos informations!");
     } finally {
       setIsLoading(false);
     }

@@ -68,6 +68,7 @@ import ProgressBars from "layouts/sections/elements/progress-bars";
 import Toggles from "layouts/sections/elements/toggles";
 import Typography from "layouts/sections/elements/typography";
 import SignUpBasic from "pages/LandingPages/Register";
+import CompleteRegistration from "pages/LandingPages/SignIn/SignInSkills";
 
 const routes = [
   {
@@ -113,6 +114,16 @@ const routes = [
             name: "sign up",
             route: "/pages/authentication/signup",
             component: <SignUpBasic />
+          }
+        ]
+      },
+      {
+        name: "Complete Registration",
+        collapse:[
+          {
+            name: "Complete Registration",
+            route: "/pages/authentication/complete-registration/:numETU/:email",
+            component: <CompleteRegistration />
           }
         ]
       },

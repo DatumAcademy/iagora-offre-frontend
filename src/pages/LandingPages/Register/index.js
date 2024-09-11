@@ -32,12 +32,12 @@ function SignUpBasic() {
       const data = response.data;
 
       if (response.status === 200 && data.status) {
-        navigate("/pages/authentication/sign-in");
+        navigate("/pages/authentication/complete-registration/"+numETU+"/"+email);
       } else {
         setErrorMessage(data.message || "Échec de l'inscription. Veuillez réessayer.");
       }
     } catch (error) {
-      setErrorMessage("Une erreur s'est produite. Veuillez réessayer plus tard.");
+      setErrorMessage("Nous n'avons pas trouvé de compte avec vos informations!");
     } finally {
       setIsLoading(false);
     }
