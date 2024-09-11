@@ -35,6 +35,8 @@ function SignInBasic() {
 
       if (response.status === 200 && data.success) {
         localStorage.setItem("generateTokken", data.token);
+        localStorage.setItem("numETU", data.student.numETU);
+        localStorage.setItem("email", data.student.email);
         navigate("/dashboard");
       } else {
         setErrorMessage(data.message || "Échec de la connexion. Veuillez réessayer.");

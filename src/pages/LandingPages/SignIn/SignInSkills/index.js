@@ -64,9 +64,9 @@ function CompleteRegistration() {
       const response = await axios.put(`${API_URL}/student/complete-registration/${numETU}/${email}`, {
         password,
         age: Number(age),
-        skills: skills.split(","),
-        language: languages,
-        experience,
+        skills: skills ? skills.split(",").filter(skill => skill.trim() !== "") : [],
+        language: languages.filter(lang => lang.label.trim() !== "" && lang.level.trim() !== ""),
+        experience: experience.filter(exp => exp.label.trim() !== "" && exp.description.trim() !== ""),
       });
 
       const data = response.data;

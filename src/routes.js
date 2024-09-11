@@ -18,6 +18,15 @@ import ProgressBars from "layouts/sections/elements/progress-bars";
 import Toggles from "layouts/sections/elements/toggles";
 import Typography from "layouts/sections/elements/typography";
 
+// Pages
+import AboutUs from "layouts/pages/landing-pages/about-us";
+import ContactUs from "layouts/pages/landing-pages/contact-us";
+import Author from "layouts/pages/landing-pages/author";
+import SignIn from "layouts/pages/authentication/sign-in";
+
+import SignUpBasic from "pages/LandingPages/Register";
+import CompleteRegistration from "pages/LandingPages/SignIn/SignInSkills";
+
 const routes = [
   {
     name: "A propos",
@@ -26,18 +35,77 @@ const routes = [
       {
         name: "Liste de mes candidatures",
         description: "Consultez toutes vos candidatures déposées pour des stages ou emplois en un seul endroit.",
-        href: "https://www.creative-tim.com/learning-lab/react/quick-start/material-kit/",
+        route: "/offres/candidatures"
       },
       {
         name: "Modification de mes compétences",
         description: "Mettez à jour vos compétences pour refléter vos dernières acquisitions et augmenter vos chances de trouver des opportunités adaptées.",
-        href: "https://www.creative-tim.com/learning-lab/react/colors/material-kit/",
+        route: "/competence/modification",
+        component: <Navbars />,
       },
       {
         name: "Liste des emplois les plus suggérer",
         description: "Découvrez les offres d'emploi les plus recommandées en fonction de votre profil et de vos compétences.",
-        href: "https://www.creative-tim.com/learning-lab/react/alerts/material-kit/",
+        route: "/offres/suggestion",
       }
+    ],
+  },
+  {
+    name: "pages",
+    icon: <Icon>dashboard</Icon>,
+    columns: 1,
+    rowsPerColumn: 2,
+    collapse: [
+      {
+        name: "landing pages",
+        collapse: [
+          {
+            name: "about us",
+            route: "/pages/landing-pages/about-us",
+            component: <AboutUs />,
+          },
+          {
+            name: "contact us",
+            route: "/pages/landing-pages/contact-us",
+            component: <ContactUs />,
+          },
+          {
+            name: "author",
+            route: "/pages/landing-pages/author",
+            component: <Author />,
+          },
+        ],
+      },
+      {
+        name: "account",
+        collapse: [
+          {
+            name: "sign in",
+            route: "/pages/authentication/sign-in",
+            component: <SignIn />,
+          },
+        ],
+      },
+      {
+        name: "Sign Up",
+        collapse:[
+          {
+            name: "sign up",
+            route: "/pages/authentication/signup",
+            component: <SignUpBasic />
+          }
+        ]
+      },
+      {
+        name: "Complete Registration",
+        collapse:[
+          {
+            name: "Complete Registration",
+            route: "/pages/authentication/complete-registration/:numETU/:email",
+            component: <CompleteRegistration />
+          }
+        ]
+      },
     ],
   },
   {
