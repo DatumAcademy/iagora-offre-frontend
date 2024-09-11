@@ -61,6 +61,7 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
       pt={3.5}
       pb={3}
       px={3}
+      height="100%"
     >
       <MKTypography
         display="block"
