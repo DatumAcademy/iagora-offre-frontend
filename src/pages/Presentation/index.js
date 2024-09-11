@@ -175,7 +175,7 @@ function Presentation() {
                     description={offer.shortdescription}
                     action={{
                       type: "internal",
-                      route: `/offer/${offer.id}`,
+                      route: `/offre/${offer.id}`,
                       label: "Voir plus",
                     }}
                   />

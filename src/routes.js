@@ -26,12 +26,19 @@ import SignIn from "layouts/pages/authentication/sign-in";
 
 import SignUpBasic from "pages/LandingPages/Register";
 import CompleteRegistration from "pages/LandingPages/SignIn/SignInSkills";
+import PresentationPage from "layouts/pages/presentation";
 
 const routes = [
   {
-    name: "A propos",
+    name: "A propos des offres",
     icon: <Icon>article</Icon>,
     collapse: [
+      {
+        name: "Acceuil",
+        description: "Consultez toutes les offres disponibles",
+        route: "/presentation",
+        component: <PresentationPage />,
+      },
       {
         name: "Liste de mes candidatures",
         description: "Consultez toutes vos candidatures déposées pour des stages ou emplois en un seul endroit.",
@@ -39,15 +46,21 @@ const routes = [
         component: <NavTabs />,
       },
       {
+        name: "Liste des emplois les plus suggérer",
+        description: "Découvrez les offres d'emploi les plus recommandées en fonction de votre profil et de vos compétences.",
+        route: "/offres/suggestion",
+      }
+    ],
+  },
+  {
+    name: "Moi",
+    icon: <Icon>article</Icon>,
+    collapse: [
+      {
         name: "Modification de mes compétences",
         description: "Mettez à jour vos compétences pour refléter vos dernières acquisitions et augmenter vos chances de trouver des opportunités adaptées.",
         route: "/competence/modification",
         component: <Navbars />,
-      },
-      {
-        name: "Liste des emplois les plus suggérer",
-        description: "Découvrez les offres d'emploi les plus recommandées en fonction de votre profil et de vos compétences.",
-        route: "/offres/suggestion",
       }
     ],
   },
@@ -146,8 +159,8 @@ const routes = [
             component: <NavTabs />,
           },
           {
-            name: "pagination",
-            route: "/sections/navigation/pagination",
+            name: "Detail offre",
+            route: "/offre/:id",
             component: <Pagination />,
           },
         ],

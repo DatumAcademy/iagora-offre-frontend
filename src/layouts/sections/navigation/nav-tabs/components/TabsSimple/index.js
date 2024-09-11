@@ -3,8 +3,10 @@ import { Container, Grid, AppBar, TextField, Card, Typography } from "@mui/mater
 import Pagination from "@mui/material/Pagination";
 import axios from "axios";
 import { API_URL } from "constants/coonstant.";
+import { useNavigate } from "react-router-dom";
 
 function StudentApplications() {
+  const navigate = useNavigate();
   const [offers, setOffers] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -38,6 +40,10 @@ function StudentApplications() {
 
   const handlePageChange = (event, value) => {
     setPage(value);
+  };
+
+  const handleCardClick = (id) => {
+    navigate(`/offre/${id}`);
   };
 
   const handleInputChange = (e) => {
@@ -86,7 +92,7 @@ function StudentApplications() {
           <Grid container spacing={2} sx={{ mt: 2 }}>
             {offers.map((offer) => (
               <Grid item xs={12} md={6} lg={4} key={offer.id}>
-                <Card sx={{ p: 2 }}>
+                <Card sx={{ p: 2 }} onClick={() => handleCardClick(offer.id)}>
                   <Typography variant="h6">{offer.label}</Typography>
                   <hr></hr>
                   <Typography variant="body2"><strong>Entreprise :</strong> {offer.company}</Typography>
