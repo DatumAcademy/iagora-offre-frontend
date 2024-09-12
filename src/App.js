@@ -6,6 +6,7 @@ import theme from "assets/theme";
 import Presentation from "layouts/pages/presentation";
 import routes from "routes";
 import Chatbot from "pages/CopiloteChatBot";
+
 export default function App() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ export default function App() {
       <Routes>
         {getRoutes(routes)}
         <Route path="/presentation" element={<Presentation />} />
-        <Route path="*" element={<Navigate to="/presentation" />} />
+        <Route path="*" element={<Navigate to="/pages/authentication/sign-in" />} />
       </Routes>
     </ThemeProvider>
   );
