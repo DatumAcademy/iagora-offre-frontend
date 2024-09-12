@@ -9,6 +9,7 @@ import SignUpBasic from "pages/LandingPages/Register";
 import CompleteRegistration from "pages/LandingPages/SignIn/SignInSkills";
 import PresentationPage from "layouts/pages/presentation";
 import Pagination from "layouts/sections/navigation/pagination";
+import SuggestionOffre from "layouts/sections/navigation/suggestion";
 
 const routes = [
   {
@@ -31,6 +32,7 @@ const routes = [
         name: "Liste des emplois les plus suggérer",
         description: "Découvrez les offres d'emploi les plus recommandées en fonction de votre profil et de vos compétences.",
         route: "/offres/suggestion",
+        component: <SuggestionOffre />,
       }
     ],
   },
