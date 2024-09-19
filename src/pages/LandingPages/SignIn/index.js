@@ -37,6 +37,7 @@ function SignInBasic() {
         localStorage.setItem("generateTokken", data.token);
         localStorage.setItem("numETU", data.student.numETU);
         localStorage.setItem("email", data.student.email);
+        localStorage.setItem("nom",data.student.first_name+" "+data.student.last_name);
         navigate("/presentation");
       } else {
         setErrorMessage(data.message || "Échec de la connexion. Veuillez réessayer.");
