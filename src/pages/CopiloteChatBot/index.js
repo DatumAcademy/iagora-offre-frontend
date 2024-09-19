@@ -32,7 +32,7 @@ function Chatbot() {
           }}
         >
           <iframe
-            src={`https://copilotstudio.microsoft.com/environments/Default-bc20447d-8952-4acd-83e4-5d68b5ece46f/bots/cr215_iagoraRechercheDeStageEtDemplois/webchat?__version__=2&numETU=${localStorage.getItem("numETU")}&nom=${localStorage.getItem("nom")}`}
+            src={`https://copilotstudio.microsoft.com/environments/Default-bc20447d-8952-4acd-83e4-5d68b5ece46f/bots/cr215_iagoraRechercheDeStageEtDemplois/webchat?__version__=2&numETU=${localStorage.getItem("numETU")}&nom=${localStorage.getItem("nom")}&email=${localStorage.getItem("email")}`}
             frameBorder="0"
             style={{ width: "100%", height: "100%" }}
             title="Chatbot"
