@@ -11,6 +11,7 @@ import MKButton from "components/MKButton";
 function OfferDetails() {
   const [offer, setOffer] = useState(null);
   const { id } = useParams();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const fetchOfferDetails = async () => {
@@ -29,6 +30,29 @@ function OfferDetails() {
 
   const isAlreadyCandidate = () => {
     return offer?.candidate?.some((c) => c.student === Number(localStorage.getItem("numETU")));
+  };
+
+  const handleApply = async () => {
+    setIsSubmitting(true);
+    try {
+      const numETU = localStorage.getItem("numETU");
+      const response = await axios.post(`${API_URL}/student/apply/${numETU}/${id}`);
+      
+      if (response.status === 200) {
+        setOffer((prevOffer) => ({
+          ...prevOffer,
+          candidate: [...prevOffer.candidate, { student: Number(numETU) }],
+        }));
+        alert("Candidature soumise avec succès !");
+      } else {
+        alert("Une erreur est survenue lors de la candidature.");
+      }
+    } catch (error) { 
+      console.error("Erreur lors de la soumission de la candidature", error);
+      alert("Erreur lors de la soumission de la candidature.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -84,7 +108,11 @@ function OfferDetails() {
             </Grid>
             {!isAlreadyCandidate() && (
               <Grid item xs={12} md={4} sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-                <MKButton variant="outlined" color="info">
+                <MKButton
+                  variant="outlined"
+                  color="info"
+                  onClick={handleApply}
+                  disabled={isSubmitting}>
                   Postuler pour cette offre
                 </MKButton>
               </Grid>
